@@ -3,5 +3,8 @@
 {% block title %} Ups 404! {% endblock %}
 
 {% block body %}
-    <h1>Error 404</h1>
+    <div class="contenedor-principal d-flex justify-content-center" >
+        <object width="300px" data="{{ url_for('static',filename='img/cat.svg') }}" alt="" srcset=""></object>
+        <a class="btn btn-primary" href="{{url_for('index')}}"><i class="bi bi-house"></i></a>
+    </div>
 {% endblock %}

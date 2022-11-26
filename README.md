@@ -20,3 +20,8 @@ wheel               0.37.1
 bootstrap:          5.2
 bootstrap-icons     1.9.1
 chart.js:           3.9.1
+
+- correr la app
+
+pip list
+

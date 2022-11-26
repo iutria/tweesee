@@ -7,10 +7,39 @@
         <h1>Twee See</h1>
         <br><br>
         <form id="frm-buscar" class="input-group">
-            <input id="txt-busqueda" type="text" class="form-control" placeholder="Realiza una busqueda">
             <button class="input-group-text" id="basic-addon2">
                 <i class="bi bi-search"></i>
             </button>
+            <input id="txt-busqueda" type="text" class="form-control" placeholder="Realiza una busqueda">
+            <div onclick="escuchar()" class="input-group-text" id="basic-addon2">
+                <i class="bi bi-mic"></i>
+            </div>
         </form>
+        
     </div>
+
+    <script>
+        let mensaje = document.getElementById('txt-busqueda');
+        let texto = '';
+        const rec = new webkitSpeechRecognition();
+        rec.lang = 'es';
+        rec.continuous = false;
+        rec.on
+        rec.onresult = event =>{
+            for(const r of event.results){
+                texto += r[0].transcript;
+                mensaje.value = texto;
+            }
+        }
+        let isBuscar = true;
+        function escuchar(){
+            if(isBuscar){
+                texto = '';
+                rec.start();
+            }else{
+                rec.stop();
+            }
+            isBuscar = !isBuscar;
+        }
+    </script>
 {% endblock %}
