@@ -7,11 +7,11 @@ client = tweepy.Client(bearer_token = config.BEARER_TOKEN)
 
 def buscar(str):
     try:
-        usu = client.get_user(username = str, user_fields=['profile_image_url'])  
-        # print('\n\n\n\n\n')
+        usu = client.get_user(
+            username = str, 
+            user_fields=['profile_image_url']
+        )  
         print(usu)
-        # print(usu['profile_image_url']) 
-        # print('\n\n\n\n\n')
     except:
         return {
             'data':{},
@@ -28,7 +28,7 @@ def buscar(str):
     
         
     user = {
-        'data':{'id':id, 'name' :usu.data['name'], 'username': usu.data['username']},
+        'user':{'id':id, 'name' :usu.data['name'], 'username': usu.data['username']},
         'followers': followers,
         'followings': followings,
     }
@@ -44,17 +44,16 @@ def getTweets(id):
     # print(allTweets)
 
 def getFollowings(id):
-    followings = {
-        'followings': {}
-    }
+    followings = {}
     followingResponse = client.get_users_following(id = id, max_results = lengthConsulta)
     if followingResponse.data != None:
         for i in range(len(followingResponse.data)) :
-            followings['followings'][i] = {
+            followings[i] = {
                 'id': followingResponse.data[i]['id'],
                 'name': followingResponse.data[i]['name'],
                 'username': followingResponse.data[i]['username'],
-                'username': followingResponse.data[i]['username'],   
+                'followers' : getFollowersFollowers(followingResponse.data[i]['id']),
+                'followings' : getFollowingsFollowers(followingResponse.data[i]['id'])
             }
             
     return followings
@@ -62,20 +61,48 @@ def getFollowings(id):
 def getFollowers(id):
     followersResponse = client.get_users_followers(id = id, max_results = lengthConsulta)
     
-    followers = {
-        'followers': {}
-    }
+    followers = {}
     
     if followersResponse.data != None:
         for i in range(len(followersResponse.data)) :
-            followers['followers'][i] = {
+            followers[i] = {
                 'id': followersResponse.data[i]['id'],
                 'name': followersResponse.data[i]['name'],
                 'username': followersResponse.data[i]['username'],
-                'username': followersResponse.data[i]['username'],   
+                'followers' : getFollowersFollowers(followersResponse.data[i]['id']),
+                'followings' : getFollowingsFollowers(followersResponse.data[i]['id'])
             }
             
     return followers
+
+def getFollowersFollowers(id):
+    followersResponse = client.get_users_followers(id = id, max_results = lengthConsulta)
+    
+    followers = {}
+    
+    if followersResponse.data != None:
+        for i in range(len(followersResponse.data)) :
+            followers[i] = {
+                'id': followersResponse.data[i]['id'],
+                'name': followersResponse.data[i]['name'],
+                'username': followersResponse.data[i]['username']
+            }
+
+    return followers
+
+def getFollowingsFollowers(id):
+    followings = {}
+    followingResponse = client.get_users_following(id = id, max_results = lengthConsulta)
+    if followingResponse.data != None:
+        for i in range(len(followingResponse.data)) :
+            followings[i] = {
+                'id': followingResponse.data[i]['id'],
+                'name': followingResponse.data[i]['name'],
+                'username': followingResponse.data[i]['username'],
+            }
+            
+    return followings
+
 # print(metodo('iutria97'))
 
 
