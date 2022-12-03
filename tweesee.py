@@ -52,8 +52,8 @@ def getFollowings(id):
                 'id': followingResponse.data[i]['id'],
                 'name': followingResponse.data[i]['name'],
                 'username': followingResponse.data[i]['username'],
-                'followers' : getFollowersFollowers(followingResponse.data[i]['id']),
-                'followings' : getFollowingsFollowers(followingResponse.data[i]['id'])
+                # 'followers' : getFollowersFollowers(followingResponse.data[i]['id']),
+                # 'followings' : getFollowingsFollowers(followingResponse.data[i]['id'])
             }
             
     return followings
@@ -69,8 +69,8 @@ def getFollowers(id):
                 'id': followersResponse.data[i]['id'],
                 'name': followersResponse.data[i]['name'],
                 'username': followersResponse.data[i]['username'],
-                'followers' : getFollowersFollowers(followersResponse.data[i]['id']),
-                'followings' : getFollowingsFollowers(followersResponse.data[i]['id'])
+                # 'followers' : getFollowersFollowers(followersResponse.data[i]['id']),
+                # 'followings' : getFollowingsFollowers(followersResponse.data[i]['id'])
             }
             
     return followers

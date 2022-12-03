@@ -4,24 +4,24 @@ Python 3.10.7
 
 - Librerias de python
 
-click:              8.1.3
-colorama            0.4.5
 Flask               2.2.2
-itsdangerous        2.1.2
-Jinja2              3.1.2
-MarkupSafe          2.1.1
-pip                 22.2.2
-setuptools          65.3.0
-Werkzeug            2.2.2
-wheel               0.37.1
+tweepy             4.12.1
 
-- Librerias Web
+- librerias movil
 
-bootstrap:          5.2
-bootstrap-icons     1.9.1
-chart.js:           3.9.1
+Flutter 3.3.8
 
-- correr la app
+- paquetes de flutter 
 
-pip list
+graphview: ^1.1.1
+http: ^0.13.5
 
+- servidor
+
+localtunel instalacion "npm install -g localtunnel"
+
+instrucciones:
+
+correr el programa de python python api.py
+ejecutar el programa movil
+ejecutar lt -p 5000 -s tweeseee
